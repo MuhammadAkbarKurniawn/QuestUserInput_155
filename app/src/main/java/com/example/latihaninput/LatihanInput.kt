@@ -44,113 +44,123 @@ fun LatihanInput(modifier: Modifier = Modifier) {
     var jeniskelamin by remember { mutableStateOf("") }
     var dataJenisKelamin by remember { mutableStateOf("") }
 
-    val dataJK = listOf("laki-Laki","Perempuan")
+    val dataJK = listOf("laki-Laki", "Perempuan")
 
-    Column(modifier = modifier.fillMaxSize().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "Biodata",
+    Column(
+        modifier = modifier.fillMaxSize().padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Biodata",
             fontWeight = FontWeight.Bold,
-            fontSize = 28.sp)
+            fontSize = 28.sp
+        )
 
         Spacer(modifier = Modifier.padding(20.dp))
 
         TextField(
-         value = nama,
-            onValueChange = {nama = it},
+            value = nama,
+            onValueChange = { nama = it },
             modifier = Modifier.fillMaxWidth().padding(5.dp),
             label = {
                 Text("nama")
             },
-            placeholder =  {
+            placeholder = {
                 Text("Masukkan Nama Anda")
             }
         )
 
+
         Row {
             dataJK.forEach { selectedJK ->
-                Row (verticalAlignment = Alignment.CenterVertically){
-                    RadioButton(selected = dataJenisKelamin == selectedJK,
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    RadioButton(selected = jeniskelamin == selectedJK,
                         onClick = {
-                            dataJenisKelamin = selectedJK
+                            jeniskelamin = selectedJK
                         })
                     Text(selectedJK)
                 }
             }
-
-        TextField(
-            value = email,
-            onValueChange = {email = it},
-            modifier = Modifier.fillMaxWidth().padding(5.dp),
-            label = {
-                Text("Email")
-            },
-            placeholder =  {
-                Text("Masukkan Email Anda")
-            },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
-        )
-
-
-        TextField(
-            value = noHp,
-            onValueChange = {noHp = it},
-            modifier = Modifier.fillMaxWidth().padding(5.dp),
-            label = {
-                Text("noHP")
-            },
-            placeholder =  {
-                Text("Masukkan noHP Anda")
-            },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
-
-        TextField(
-            value = alamat,
-            onValueChange = {alamat = it},
-            modifier = Modifier.fillMaxWidth().padding(5.dp),
-            label = {
-                Text("alamat")
-            },
-            placeholder =  {
-                Text("Masukkan Alamat Anda")
-            }
-        )
-
-        Button(onClick = {datanama = nama
-                         dataJenisKelamin = jeniskelamin
-                         dataEmail = email
-                         dataNoHp = noHp
-                         dataAlamat = alamat},
-            modifier = Modifier.padding(vertical = 10.dp)) {
-            Text("Submit")
         }
 
-        Card(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
-            Column {
-                TampilData(
-                    judul = "Nama",
-                    isinya = datanama
-                )
-                TampilData(
-                    judul = "Jenis Kelamin",
-                    isinya = dataJenisKelamin
-                )
-                TampilData(
-                    judul = "Email",
-                    isinya = dataEmail
-                )
-                TampilData(
-                    judul = "noHP",
-                    isinya = dataNoHp
-                )
-                TampilData(
-                    judul = "Alamat",
-                    isinya = dataAlamat
-                )
+            TextField(
+                value = email,
+                onValueChange = { email = it },
+                modifier = Modifier.fillMaxWidth().padding(5.dp),
+                label = {
+                    Text("Email")
+                },
+                placeholder = {
+                    Text("Masukkan Email Anda")
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+            )
+
+
+            TextField(
+                value = noHp,
+                onValueChange = { noHp = it },
+                modifier = Modifier.fillMaxWidth().padding(5.dp),
+                label = {
+                    Text("noHP")
+                },
+                placeholder = {
+                    Text("Masukkan noHP Anda")
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            )
+
+            TextField(
+                value = alamat,
+                onValueChange = { alamat = it },
+                modifier = Modifier.fillMaxWidth().padding(5.dp),
+                label = {
+                    Text("alamat")
+                },
+                placeholder = {
+                    Text("Masukkan Alamat Anda")
+                }
+            )
+
+            Button(
+                onClick = {
+                    datanama = nama
+                    dataJenisKelamin = jeniskelamin
+                    dataEmail = email
+                    dataNoHp = noHp
+                    dataAlamat = alamat
+                },
+                modifier = Modifier.padding(vertical = 10.dp)
+            ) {
+                Text("Submit")
+            }
+
+            Card(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+                Column {
+                    TampilData(
+                        judul = "Nama",
+                        isinya = datanama
+                    )
+                    TampilData(
+                        judul = "Jenis\nKelamin",
+                        isinya = dataJenisKelamin
+                    )
+                    TampilData(
+                        judul = "Email",
+                        isinya = dataEmail
+                    )
+                    TampilData(
+                        judul = "noHp",
+                        isinya = dataNoHp
+                    )
+                    TampilData(
+                        judul = "Alamat",
+                        isinya = dataAlamat
+                    )
+                }
             }
         }
     }
-}
 
 @Composable
 fun TampilData(
